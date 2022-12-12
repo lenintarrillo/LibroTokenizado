@@ -1,3 +1,14 @@
+//////////////////////////////////////////////////////////////////////////////////////////////
+///░█████╗░██╗░░██╗░█████╗░░█████╗░░█████╗░███╗░░██╗░█████╗░  ███╗░░██╗███████╗████████╗//////
+///██╔══██╗██║░░██║██╔══██╗██╔══██╗██╔══██╗████╗░██║██╔══██╗  ████╗░██║██╔════╝╚══██╔══╝//////
+///██║░░╚═╝███████║██║░░██║██║░░╚═╝███████║██╔██╗██║██║░░██║  ██╔██╗██║█████╗░░░░░██║░░░//////
+///██║░░██╗██╔══██║██║░░██║██║░░██╗██╔══██║██║╚████║██║░░██║  ██║╚████║██╔══╝░░░░░██║░░░//////
+///╚█████╔╝██║░░██║╚█████╔╝╚█████╔╝██║░░██║██║░╚███║╚█████╔╝  ██║░╚███║██║░░░░░░░░██║░░░//////
+///░╚════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚══╝╚═╝░░░░░░░░╚═╝░░░//////
+//////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////CONTRATO INTELIGENTE PARA LIBRO TOKENIZADO//////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -140,7 +151,6 @@ contract ChocanoNFT is
         price = newPrice;
     }
 
-    // Set team addresses
     function setChocanoAddress(address _chocano)
         public
         onlyRole(ADVISOR_ROLE)
@@ -173,9 +183,19 @@ contract ChocanoNFT is
     
     function chocano() public pure virtual returns (string memory) {
         return "Eduardo Jesus Chocano Ravida"
-               "Estudiante de Derecho de la Universidad de Lima";
+               "Estudiante de Derecho de la Universidad de Lima"
+               "https://www.linkedin.com/in/eduardo-jesus-chocano-ravina-9611541b6/";
                
     }
+
+
+    function advisor() public pure virtual returns (string memory) {
+        return "Lenin Tarrillo Vilchez"
+               "Speaker en Blockchain y criptoactivos. Vicepresidente de la Asociacion de Blockchain del Peru"
+               "https://www.linkedin.com/in/lenintv/";
+               
+    }
+
 
 
     function version() public pure virtual returns (string memory) {
