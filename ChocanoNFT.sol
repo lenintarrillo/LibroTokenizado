@@ -6,14 +6,11 @@
 ///╚█████╔╝██║░░██║╚█████╔╝╚█████╔╝██║░░██║██║░╚███║╚█████╔╝  ██║░╚███║██║░░░░░░░░██║░░░//////
 ///░╚════╝░╚═╝░░╚═╝░╚════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚══╝░╚════╝░  ╚═╝░░╚══╝╚═╝░░░░░░░░╚═╝░░░//////
 //////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////CONTRATO INTELIGENTE PARA LIBRO TOKENIZADO//////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
+//////Project leader:  Eduardo Chocano
+//////Project Advisor and Developer: Lenin Tarrillo
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-///Project leader:  Eduardo Chocano
-///Project Advisor and Developer: Lenin Tarrillo
-
-// SPDX-License-Identifier: MIT
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
@@ -42,17 +39,19 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
     uint256 public constant MAX_MINT_PER_TX = 5;
 
     // The base link that leads to the image / video of the token
-    string public baseTokenURI = "";
+    string public baseTokenURI =
+        "https://cyan-big-hippopotamus-597.mypinata.cloud/ipfs/QmctBFb7gx1sZZMoAj4GEdmdUbMjRc1etB7z6insT3GtjX/0#";
 
     string public _WhitePaperURI = "";
 
     address public chocanoNFTAddress;
 
-    constructor(address _chocano) ERC721("The Coffee Every Morning NFT", "COF") {
+    constructor()
+        ERC721("The Coffee Every Morning NFT", "COF")
+    {
         price = initial_price;
         _setupRole(ADVISOR_ROLE, _msgSender());
-        chocanoNFTAddress = _chocano;
-        _setupRole(ADMIN_ROLE, _chocano);
+       
     }
 
     // Override so the openzeppelin tokenURI() method will use this method to create the full tokenURI instead
