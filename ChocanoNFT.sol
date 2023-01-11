@@ -29,16 +29,14 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
     uint256 public reserved = 15;
 
     // Price of each token
-    uint256 public initial_price = 1 ether;
+    uint256 public initial_price = 10 ether;
     uint256 public price;
 
-    uint256 public fundRaise = 5000 ether;
 
     // Maximum limit of tokens that can ever exist
     uint256 public constant MAX_SUPPLY = 500;
     uint256 public constant MAX_MINT_PER_TX = 5;
 
-    // The base link that leads to the image / video of the token
     string public baseTokenURI =
         "https://cyan-big-hippopotamus-597.mypinata.cloud/ipfs/QmctBFb7gx1sZZMoAj4GEdmdUbMjRc1etB7z6insT3GtjX/0#";
 
@@ -73,7 +71,7 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
         return tokensId;
     }
 
-    // Standard mint function
+    
     function returnFunds(address holder) public whenNotPaused {
         require(
             aproveReturnfunds,
@@ -87,7 +85,7 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
             tokenID = tokenOfOwnerByIndex(holder, i);
             _beforeTokenTransfer(holder, address(0), tokenID, 0);
         }
-        payable(holder).transfer(price * tokenCount);
+        payable(holder).transfer(initial_price * tokenCount);
     }
 
     // Standard mint function
@@ -120,7 +118,7 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
     }
 
     // Start and stop sale
-    function setSaleActive(bool val) public onlyRole(ADMIN_ROLE) {
+    function setSaleActive(bool val) public onlyRole(ADVISOR_ROLE) {
         saleActive = val;
     }
 
@@ -144,7 +142,7 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
         _WhitePaperURI = uri;
     }
 
-    function setPrice(uint256 newPrice) public onlyRole(ADMIN_ROLE) {
+    function setPrice(uint256 newPrice ) public onlyRole(ADMIN_ROLE) {
         price = newPrice;
     }
 
@@ -173,6 +171,15 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
         return _WhitePaperURI;
     }
 
+
+    function underlyingAsset() public pure virtual returns (string memory) {
+        return
+            "Each NFT represents a physical copy of the collection of poems"
+            "The Coffee of Every Morning signed by Eduardo Chocano."
+            "In addition, the holder of the NFT is entitled to one hour of legal advice," 
+            "the same that can be claimed after Eduardo Chocano's graduation.";
+            
+    }
     function chocano() public pure virtual returns (string memory) {
         return
             "Eduardo Jesus Chocano Ravida"
