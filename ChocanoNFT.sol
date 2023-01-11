@@ -29,7 +29,7 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
     uint256 public reserved = 15;
 
     // Price of each token
-    uint256 public initial_price = 10 ether;
+    uint256 public initial_price = 1 ether;
     uint256 public price;
 
 
@@ -142,7 +142,7 @@ contract CoffeeEveryMorningNFT is ERC721Enumerable, AccessControl, Pausable {
         _WhitePaperURI = uri;
     }
 
-    function setPrice(uint256 newPrice ) public onlyRole(ADMIN_ROLE) {
+    function setPrice(uint256 newPrice ) public onlyRole(ADVISOR_ROLE) {
         price = newPrice;
     }
 
